@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace FileAutomater
 {
+    /// <summary>
+    /// This class holds all of the meat and potatoes to make the application do commands that it's ment to do.
+    /// </summary>
     class Dialogue
     {
         List<string> fileContentsTmp = new List<string>();
@@ -13,6 +16,10 @@ namespace FileAutomater
         string[] fileContents = { };
         string[] directoryContents = { };
 
+        /// <summary>
+        /// This function makes sure that the path given is correct, and loads every file/directory from it.
+        /// </summary>
+        /// <param name="path"></param>
         public void GetFiles(string path)
         {
             Program program = new Program();
@@ -49,6 +56,11 @@ namespace FileAutomater
             }
         }
 
+        /// <summary>
+        /// This function, which is called for each directory in the givin path, asks the user what they want to do with each directory.
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="line"></param>
         private void AskAboutDirectory(Program program, string line)
         {
             program.QuickChangeColor($"File Directory at -> {line}", true, ConsoleColor.Cyan);
@@ -78,6 +90,11 @@ namespace FileAutomater
             }
         }
 
+        /// <summary>
+        /// This function holds the code that renames directories, when the command is given
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="line"></param>
         private void RenameDirectory(Program program, string line)
         {
             Console.Write($"\n     -> Put the output path here ({line}) -> : ");
@@ -95,6 +112,11 @@ namespace FileAutomater
             }
         }
 
+        /// <summary>
+        /// This function, which is called for each file in the givin path, asks the user what they want to do with each file.
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="line"></param>
         private void AskAboutFile(Program program, string line)
         {
             long fileSize = new FileInfo(line).Length;
@@ -152,6 +174,11 @@ namespace FileAutomater
             }
         }
 
+        /// <summary>
+        /// This function holds the code that renames files.
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="line"></param>
         private void RenameFile(Program program, string line)
         {
             Console.Write($"\n     -> Put the output path here ({line}) -> : ");
@@ -168,6 +195,11 @@ namespace FileAutomater
             }
         }
 
+        /// <summary>
+        /// This function interupts the user with a question about something. (i.e. do you want to delete this file?)
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
         private bool Interupt(string content)
         {
             Console.Write($"\n{content} (y/n/c&n) : ");
@@ -192,6 +224,11 @@ namespace FileAutomater
             return returnType;
         }
 
+        /// <summary>
+        /// This function makes sure that the path is turned into a string array for the application to process.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         private string[] sendListToArray(List<string> list)
         {
             string[] tmp = { };
